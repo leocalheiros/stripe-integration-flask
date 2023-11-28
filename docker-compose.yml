@@ -4,6 +4,25 @@ services:
   pythonapp:
     build:
       context: ./
-    command: python3 run.py
+    command: sh -c "sleep 10s ; python3 ./run.py"
     ports:
       - '5000:5000'
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    volumes:
+      - .:/app
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'stripe_db'
+      MYSQL_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  mysql_data:
