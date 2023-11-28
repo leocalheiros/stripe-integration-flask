@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, session
 from src.controllers.stripe_controller import create_checkout_session, create_checkout_session_for_product
 from src.config.stripe_config import stripe_config
 import stripe
@@ -16,6 +16,8 @@ def is_checkout_session_successful(session_id):
 
 @stripe_routes_bp.route('/index')
 def index():
+    if not 'user_id' in session:
+        return redirect(url_for('user_routes.login_page'))
     checkout_session = create_checkout_session()
     if not checkout_session:
         return "Failed to create checkout session."
