@@ -40,15 +40,3 @@ Stripe Integration Flask é uma aplicação web simples desenvolvida em Flask qu
    docker-compose up --build
    ```
 3. Pronto, aplicação inicializada baseada com Docker.
-
-### Estrutura do projeto:
-    src/config/config.py: Arquivo de configuração contendo as chaves da API do Stripe.
-    src/controllers/stripe_controller.py: Módulo do controlador que lida com as sessões de checkout do Stripe.
-    src/routes.py: Rotas da aplicação Flask e lógica principal.
-    env-example: Exemplo de arquivo de variáveis de ambiente.
-    run.py: Script para executar a aplicação Flask.
-    src/templates/index.html: Modelo HTML para a página principal.
-    src/templates/thanks.html: Modelo HTML para a página de agradecimento.
-    src/templates/failure.html: Modelo HTML para a página de falha no pagamento.
-    src/static/script-ajax.js: Arquivo JavaScript para manipular pagamentos do Stripe usando AJAX.
-    src/static/script-no-ajax.js: Arquivo JavaScript para manipular pagamentos do Stripe sem AJAX.
