@@ -21,12 +21,28 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills float-right">
+            {% if not session["user_id"] %}
             <li class="nav-item">
               <a class="nav-link active" href="{{ url_for('stripe_routes.index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{{ url_for('user_routes.create_user_page') }}">Create User <span class="sr-only">(current)</span></a>
+            </li><li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('user_routes.login_page') }}">Login <span class="sr-only">(current)</span></a>
             </li>
+            {% else %}
+              <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('stripe_routes.index') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('user_routes.create_user_page') }}">Create User <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <form action="{{ url_for('user_routes.logout') }}">
+                  <button type="submit" class="btn btn-link nav-link">Logout</button>
+                </form>
+              </li>
+            {% endif %}
           </ul>
         </nav>
         <h3 class="text-muted">Leo Store</h3>
