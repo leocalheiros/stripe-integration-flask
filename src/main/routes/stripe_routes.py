@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
-from src.config.config import stripe_config
+from src.config.stripe_config import stripe_config
 from src.controllers.stripe_controller import create_checkout_session, create_checkout_session_for_product
 import stripe
 
